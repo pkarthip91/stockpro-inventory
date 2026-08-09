@@ -1,0 +1,159 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Light theme (default) */
+  --bg: #f5f5fb;
+  --bg-elevated: #ffffff;
+  --bg-elevated-2: #f0eefc;
+  --bg-sidebar: #ffffff;
+  --border: #e7e5f5;
+  --border-soft: #edebfa;
+
+  --text: #1e1b3a;
+  --text-muted: #6b6890;
+  --text-faint: #9c99bb;
+
+  /* Nyvora-style primary — violet/indigo */
+  --ny-primary: #5b3df0;
+  --ny-primary-2: #7f68f3;
+  --ny-primary-rgb: 91, 61, 240;
+  --ny-grad-primary: linear-gradient(135deg, #5b3df0 0%, #7f68f3 100%);
+
+  /* Keep old token names as aliases so every existing component (bg-gold, text-gold-soft, etc.)
+     picks up the new palette automatically without a project-wide rename. */
+  --gold: var(--ny-primary);
+  --gold-soft: var(--ny-primary-2);
+  --gold-dim: #c9c0fb;
+
+  --success: #16a34a;
+  --success-soft: #e8f8ee;
+  --danger: #e0433f;
+  --danger-soft: #fdecec;
+  --info: #2f7de1;
+  --info-soft: #eaf2fe;
+
+  --ny-card: var(--bg-elevated);
+  --ny-border: var(--border-soft);
+  --ny-radius: 14px;
+  --ny-shadow-xs: 0 1px 2px rgba(30, 27, 58, 0.04), 0 6px 20px rgba(91, 61, 240, 0.06);
+  --ny-body: var(--text);
+
+  --font-display: "Plus Jakarta Sans", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, monospace;
+}
+
+.dark {
+  --bg: #100e24;
+  --bg-elevated: #17152f;
+  --bg-elevated-2: #1e1c3c;
+  --bg-sidebar: #0d0b1e;
+  --border: #2c2955;
+  --border-soft: #26234a;
+
+  --text: #ece9fb;
+  --text-muted: #9d9ac4;
+  --text-faint: #6d6aa0;
+
+  --ny-primary: #7f68f3;
+  --ny-primary-2: #9d8bf7;
+  --ny-primary-rgb: 127, 104, 243;
+  --ny-grad-primary: linear-gradient(135deg, #7f68f3 0%, #9d8bf7 100%);
+
+  --gold: var(--ny-primary);
+  --gold-soft: var(--ny-primary-2);
+  --gold-dim: #423d8e;
+
+  --success: #34d399;
+  --success-soft: #123024;
+  --danger: #f87171;
+  --danger-soft: #3a1d1d;
+  --info: #60a5fa;
+  --info-soft: #16233d;
+
+  --ny-card: var(--bg-elevated);
+  --ny-border: var(--border-soft);
+  --ny-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.25), 0 6px 20px rgba(0, 0, 0, 0.3);
+  --ny-body: var(--text);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-elevated-2: var(--bg-elevated-2);
+  --color-bg-sidebar: var(--bg-sidebar);
+  --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-faint: var(--text-faint);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-dim: var(--gold-dim);
+  --color-primary: var(--ny-primary);
+  --color-primary-2: var(--ny-primary-2);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-num {
+  font-family: var(--font-mono);
+}
+
+/* Nyvora-style card primitive */
+.card-shadow {
+  box-shadow: var(--ny-shadow-xs);
+}
+
+.grad-primary {
+  background: var(--ny-grad-primary);
+}
+
+.ticket-edge {
+  background-image: radial-gradient(circle at 4px 4px, var(--bg) 3px, transparent 3.5px);
+  background-size: 12px 100%;
+  background-position: left center;
+}
+
+/* Skeleton loading shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-elevated-2) 25%, var(--border-soft) 50%, var(--bg-elevated-2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+
+input, select, textarea { color-scheme: light; }
+.dark input, .dark select, .dark textarea { color-scheme: dark; }
+
+.invoice-paper { min-height: 1120px; }
+@media print {
+  @page { size: A4; margin: 0; }
+  body { background: #fff !important; }
+  .invoice-paper { width: 210mm; min-height: 297mm; margin: 0 auto; box-shadow: none !important; }
+}
