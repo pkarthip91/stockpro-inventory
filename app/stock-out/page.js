@@ -9,6 +9,7 @@ import AppShell from "@/components/layout/AppShell";
 import { Card, CardHeader, CardTitle, Label, Input, Select, Badge } from "@/components/ui";
 import Button from "@/components/ui/Button";
 import Pagination from "@/components/ui/Pagination";
+import ProductSelectCombobox from "@/components/products/ProductSelectCombobox";
 import { formatDate, formatMoney, formatDateTime } from "@/lib/utils";
 
 export default function StockOutPage() {
@@ -186,35 +187,58 @@ export default function StockOutPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label>Main Product</Label>
-              <Select
+              <ProductSelectCombobox
+                items={[...new Set(products.map((p) => p.name).filter(Boolean))].map(
+                  (name) => ({
+                    value: name,
+                    label: name,
+                  })
+                )}
                 value={form.main_product_name}
-                onChange={(e) => setForm({ ...form, main_product_name: e.target.value, product_id: "" })}
-                required
                 disabled={saving}
-              >
-                <option value="">Select main product</option>
-                {Array.from(new Map(products.map((p) => [p.name, p])).values()).map((product) => (
-                  <option key={product.name} value={product.name}>{product.name}</option>
-                ))}
-              </Select>
+                placeholder="Select main product"
+                searchPlaceholder="Search main product..."
+                emptyText="No main product found."
+                onChange={(value) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    main_product_name: value,
+                    product_id: "",
+                  }))
+                }
+              />
             </div>
+
             <div>
-              <Label>Sub product</Label>
-              <Select
-                value={form.product_id}
-                onChange={(e) => setForm({ ...form, product_id: e.target.value })}
-                required
-                disabled={!form.main_product_name || saving}
-              >
-                <option value="">Select sub product</option>
-                {products
+              <Label>Sub Product</Label>
+              <ProductSelectCombobox
+                items={products
                   .filter((p) => p.name === form.main_product_name)
-                  .map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.sub_product ? `${p.sub_product}` : "Default"} ({formatStockCount(p.stock_qty, p.unit, Number(p.pack_size || 1))} available)
-                    </option>
-                  ))}
-              </Select>
+                  .map((p) => ({
+                    value: p.id,
+                    label: p.sub_product || "Default",
+                    description: `${formatStockCount(
+                      p.stock_qty,
+                      p.unit,
+                      Number(p.pack_size || 1)
+                    )} available`,
+                  }))}
+                value={form.product_id}
+                disabled={!form.main_product_name || saving}
+                placeholder={
+                  form.main_product_name
+                    ? "Select sub product"
+                    : "Select main product first"
+                }
+                searchPlaceholder="Search sub product..."
+                emptyText="No sub product found."
+                onChange={(value) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    product_id: value,
+                  }))
+                }
+              />
             </div>
             <div>
               <Label>Customer / Buyer</Label>

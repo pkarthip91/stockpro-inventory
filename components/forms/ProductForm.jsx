@@ -206,7 +206,7 @@ export default function ProductForm({ product }) {
   }
 
   return (
-    <Card className="p-6 max-w-4xl">
+    <Card className="p-6 max-w-8xl">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div className="space-y-4">
           <div>

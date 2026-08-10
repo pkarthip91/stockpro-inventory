@@ -7,6 +7,7 @@ import AppShell from "@/components/layout/AppShell";
 import { Card, CardHeader, CardTitle, Label, Input, Select, TableSkeleton } from "@/components/ui";
 import Button from "@/components/ui/Button";
 import Pagination from "@/components/ui/Pagination";
+import ProductSelectCombobox from "@/components/products/ProductSelectCombobox";
 import { formatDateTime, formatMoney } from "@/lib/utils";
 
 const PAGE_SIZE = 10;
@@ -155,17 +156,69 @@ export default function StockInPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div><Label>Main Product</Label><Select required disabled={saving} value={form.main_product_name} onChange={(e) => setForm({ ...form, main_product_name: e.target.value, product_id: "", cost_price: "" })}>
-              <option value="">Select main product</option>
-              {[...new Set(products.map((p) => p.name))].map((name) => <option key={name} value={name}>{name}</option>)}
-            </Select></div>
+            <div>
+              <Label>Main Product</Label>
+              <ProductSelectCombobox
+                items={Array.from(
+                  new Map(
+                    products.map((p) => [
+                      p.name,
+                      { value: p.name, label: p.name },
+                    ])
+                  ).values()
+                )}
+                value={form.main_product_name}
+                disabled={saving}
+                placeholder="Select main product"
+                searchPlaceholder="Search main product..."
+                emptyText="No main product found."
+                onChange={(value) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    main_product_name: value,
+                    product_id: "",
+                    cost_price: "",
+                  }))
+                }
+              />
+            </div>
 
-            <div><Label>Sub Product</Label><Select required disabled={!form.main_product_name || saving} value={form.product_id} onChange={(e) => setForm({ ...form, product_id: e.target.value })}>
-              <option value="">Select sub product</option>
-              {products.filter((p) => p.name === form.main_product_name).map((p) => (
-                <option key={p.id} value={p.id}>{p.sub_product || "Default"} · Stock {p.stock_qty}</option>
-              ))}
-            </Select></div>
+            <div>
+              <Label>Sub Product</Label>
+              <ProductSelectCombobox
+                items={products
+                  .filter((p) => p.name === form.main_product_name)
+                  .map((p) => ({
+                    value: p.id,
+                    label: p.sub_product || "Default",
+                    description: `Stock ${Number(p.stock_qty || 0)}`,
+                    product: p,
+                  }))}
+                value={form.product_id}
+                disabled={!form.main_product_name || saving}
+                placeholder={
+                  form.main_product_name
+                    ? "Select sub product"
+                    : "Select main product first"
+                }
+                searchPlaceholder="Search sub product..."
+                emptyText="No sub product found."
+                onChange={(value, item) => {
+                  const product = item?.product;
+
+                  setForm((prev) => ({
+                    ...prev,
+                    product_id: value,
+                    supplier_id:
+                      prev.supplier_id ||
+                      product?.supplier_id ||
+                      "",
+                    cost_price:
+                      product?.cost_price ?? "",
+                  }));
+                }}
+              />
+            </div>
 
             {selectedProduct && <div className="rounded-xl border border-border-soft bg-bg-elevated-2 p-3 text-xs space-y-1">
               <p className="font-medium text-text">Product master price</p>
