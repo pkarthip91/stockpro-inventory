@@ -3,9 +3,9 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 
 export const metadata = {
-  title: "84 Liquor Land | StockPro Inventory",
-  description: "Inventory, stock & invoicing system for 84 Liquor Land",
-  icons: { icon: "/logo-transparent.png" },
+  title: "Nectar Heaven | Inventory & Stock Management",
+  description: "Inventory, stock & invoicing system for Nectar Heaven",
+ 
 };
 
 export default function RootLayout({ children }) {

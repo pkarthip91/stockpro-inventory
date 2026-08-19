@@ -29,7 +29,7 @@ async function seed() {
   if ((await User.countDocuments()) === 0) {
     await User.create({
       name: "Arjun Dass",
-      email: "admin@84liquorland.com",
+      email: "admin@nectarheaven.com",
       password: bcrypt.hashSync("admin123", 8),
       role: "admin",
     });

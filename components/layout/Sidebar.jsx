@@ -53,11 +53,11 @@ export default function Sidebar({ open, onClose }) {
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="px-5 py-6 border-b border-border-soft">
-          <div className="relative w-full h-12">
-            <Image src={logoSrc} alt="84 Liquor Land" fill className="object-contain object-left" priority />
+        <div className="px-2 py-2 border-b border-border-soft">
+          <div className="relative w-full h-20">
+            <Image src={logoSrc} alt="Nectar Heaven" fill className="object-contain object-left" priority />
           </div>
-          <p className="text-[10px] text-text-faint tracking-[0.15em] uppercase mt-1">StockPro Inventory</p>
+          {/* <p className="text-[10px] text-text-faint tracking-[0.15em] uppercase mt-1">StockPro Inventory</p> */}
         </div>
 
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-0.5">

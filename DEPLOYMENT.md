@@ -53,7 +53,7 @@ node scripts/seed-mongo.js
 This seeds the same Atlas database your deployed app now reads from.
 
 ### 6. Visit your live app
-Open the Vercel URL, log in with `admin@84liquorland.com` / `admin123` — you're live.
+Open the Vercel URL, log in with `admin@nectarheaven.com` / `admin123` — you're live.
 
 ---
 

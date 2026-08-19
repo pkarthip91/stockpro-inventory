@@ -11,7 +11,7 @@ import Button from "@/components/ui/Button";
 export default function LoginPage() {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
-  const [email, setEmail] = useState("admin@84liquorland.com");
+  const [email, setEmail] = useState("admin@nectarheaven.com");
   const [password, setPassword] = useState("admin123");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -58,9 +58,9 @@ export default function LoginPage() {
       />
       <div className="relative w-full max-w-sm px-6">
         <div className="flex flex-col items-center mb-8">
-          <div className="relative w-56 h-24 mb-2">
-            <Image src="/logo-transparent.png" alt="84 Liquor Land" fill className="object-contain dark:hidden" priority />
-            <Image src="/logo-transparent-white.png" alt="84 Liquor Land" fill className="object-contain hidden dark:block" priority />
+          <div className="relative w-96 h-24 mb-2">
+            <Image src="/logo-transparent.png" alt="Nectar Heaven" fill className="object-contain dark:hidden" priority />
+            <Image src="/logo-transparent-white.png" alt="Nectar Heaven" fill className="object-contain hidden dark:block" priority />
           </div>
         </div>
 
