@@ -1,6 +1,6 @@
-# StockPro — 84 Liquor Land Inventory System
+# StockPro — Nectar Heaven Inventory System
 
-A full-stack inventory, stock, and invoicing web app built for 84 Liquor Land.
+A full-stack inventory, stock, and invoicing web app built for Nectar Heaven.
 
 ## Stack
 - **Frontend:** Next.js 16 (App Router), JavaScript, Tailwind CSS v4, hand-built ShadCN-style components, React Hook Form, Recharts, sonner (toasts), next-themes (light/dark)
@@ -21,7 +21,7 @@ npm run dev
 ```
 Open **http://localhost:3000** — redirects to `/login`.
 
-**Demo login:** `admin@84liquorland.com` / `admin123`
+**Demo login:** `admin@nectarheaven.com` / `admin123`
 
 ---
 

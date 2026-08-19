@@ -221,8 +221,8 @@ export async function POST(request) {
     emailBody += `\n\n⚠️ LOW STOCK ALERT\nOnly ${product.stock_qty} ${product.unit} remaining (reorder level: ${product.reorder_level} ${product.unit}). Please arrange restocking soon.`;
   }
 
-  whatsappMessage += `\n\n_84 Liquor Land — StockPro Inventory_`;
-  emailBody += `\n\nThis is an automated notification from 84 Liquor Land — StockPro Inventory System.`;
+  whatsappMessage += `\n\n_Nectar Heaven — StockPro Inventory_`;
+  emailBody += `\n\nThis is an automated notification from Nectar Heaven — StockPro Inventory System.`;
 
   // WhatsApp + email alerts — fire and forget, never blocks the response
   sendWhatsAppMessage(whatsappMessage);

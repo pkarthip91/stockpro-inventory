@@ -21,7 +21,7 @@ export default function SettingsPage() {
           <CardContent className="space-y-4">
             <div>
               <Label>Business Name</Label>
-              <Input defaultValue="84 Liquor Land" readOnly />
+              <Input defaultValue="Nectar Heaven" readOnly />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -30,7 +30,7 @@ export default function SettingsPage() {
               </div>
               <div>
                 <Label>Email</Label>
-                <Input defaultValue="84LiquorLand@gmail.com" readOnly />
+                <Input defaultValue="nectarheaven@gmail.com" readOnly />
               </div>
             </div>
             <div>

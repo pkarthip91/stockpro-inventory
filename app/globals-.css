@@ -151,60 +151,9 @@ body {
 input, select, textarea { color-scheme: light; }
 .dark input, .dark select, .dark textarea { color-scheme: dark; }
 
-/* Invoice preview + print should look the same. */
-.invoice-paper {
-  width: 100%;
-  min-height: 1120px;
-  overflow: hidden;
-}
-
-.invoice-paper,
-.invoice-paper * {
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-}
-
+.invoice-paper { min-height: 1120px; }
 @media print {
-  @page {
-    size: A4 portrait;
-    margin: 0;
-  }
-
-  html,
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #fff !important;
-  }
-
-  body {
-    width: 210mm;
-  }
-
-  .invoice-paper {
-    width: 210mm !important;
-    max-width: 210mm !important;
-    min-height: 297mm !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    border: 0 !important;
-    overflow: visible !important;
-  }
-
-  .invoice-paper table {
-    width: 100% !important;
-    border-collapse: collapse !important;
-  }
-
-  .invoice-paper thead {
-    display: table-header-group;
-  }
-
-  .invoice-paper tr,
-  .invoice-paper td,
-  .invoice-paper th,
-  .invoice-signature {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
+  @page { size: A4; margin: 0; }
+  body { background: #fff !important; }
+  .invoice-paper { width: 210mm; min-height: 297mm; margin: 0 auto; box-shadow: none !important; }
 }

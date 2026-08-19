@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
 
 try {
   const result = await transporter.sendMail({
-    from: `"StockPro — 84 Liquor Land" <${SMTP_USER}>`,
+    from: `"StockPro — Nectar Heaven" <${SMTP_USER}>`,
     to: NOTIFY_EMAIL_TO,
     subject: "Test Email from StockPro",
     text: "If you're reading this, your SMTP setup works!",
